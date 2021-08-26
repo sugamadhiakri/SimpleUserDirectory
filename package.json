@@ -5,7 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "nodemon ./src/index.ts"
+		"dev": "ts-node-dev --transpile-only --no-notify src/index.ts",
+		"build": "tsc",
+		"generate": "ts-node --transpile-only src/schema"
 	},
 	"repository": {
 		"type": "git",

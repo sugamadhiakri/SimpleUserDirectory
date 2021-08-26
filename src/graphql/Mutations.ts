@@ -1,4 +1,5 @@
 import { getLatAndLon, LatAndLon } from "../NominatimApi/nominatimApi";
+import { extendType, intArg, nonNull, stringArg } from "nexus";
 
 export const UserMutation = extendType({
 	type: "Mutation",

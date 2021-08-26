@@ -1,9 +1,10 @@
 import { getLatAndLon, isNear, LatAndLon } from "../NominatimApi/nominatimApi";
+import { extendType, nonNull, stringArg } from "nexus";
 
 export const UserQuery = extendType({
 	type: "Query",
 	definition(t) {
-		t.list.nonNull.field("usersNearAddress", {
+		t.list.field("usersNearAddress", {
 			type: "User",
 			args: {
 				address: nonNull(stringArg()),
@@ -18,6 +19,13 @@ export const UserQuery = extendType({
 
 					return isNear(inputLatLon, userLatLon);
 				});
+			},
+		});
+
+		t.list.field("getAllUsers", {
+			type: "User",
+			resolve(_root, _args, ctx) {
+				return ctx.db.user.findMany();
 			},
 		});
 	},

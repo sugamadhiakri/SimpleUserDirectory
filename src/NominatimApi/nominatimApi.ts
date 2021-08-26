@@ -11,10 +11,14 @@ export async function getLatAndLon(address: string): Promise<LatAndLon> {
 	return await fetch(ENDPOINT)
 		.then((response: any) => response.json())
 		.then((data: any) => {
+			if (data.length === 0) {
+				throw new Error("Invalid Address Type.");
+			}
 			let getLatAndLon: LatAndLon = {
 				latitude: +data[0].lat,
 				longitude: +data[0].lon,
 			};
+
 			return getLatAndLon;
 		});
 }

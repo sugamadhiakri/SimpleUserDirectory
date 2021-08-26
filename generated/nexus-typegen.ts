@@ -28,15 +28,16 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   Query: {};
   User: { // root type
-    address?: string | null; // String
-    age?: number | null; // Int
-    gender?: string | null; // String
-    id?: number | null; // Int
-    latitude?: number | null; // Float
-    longitude?: number | null; // Float
-    name?: string | null; // String
+    address: string; // String!
+    age: number; // Int!
+    gender: string; // String!
+    id: number; // Int!
+    latitude: number; // Float!
+    longitude: number; // Float!
+    name: string; // String!
   }
 }
 
@@ -51,23 +52,29 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createUser: NexusGenRootTypes['User']; // User!
+  }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    usersNearAddress: NexusGenRootTypes['User'][] | null; // [User!]
   }
   User: { // field return type
-    address: string | null; // String
-    age: number | null; // Int
-    gender: string | null; // String
-    id: number | null; // Int
-    latitude: number | null; // Float
-    longitude: number | null; // Float
-    name: string | null; // String
+    address: string; // String!
+    age: number; // Int!
+    gender: string; // String!
+    id: number; // Int!
+    latitude: number; // Float!
+    longitude: number; // Float!
+    name: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    createUser: 'User'
+  }
   Query: { // field return type name
-    ok: 'Boolean'
+    usersNearAddress: 'User'
   }
   User: { // field return type name
     address: 'String'
@@ -81,6 +88,19 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createUser: { // args
+      address: string; // String!
+      age: number; // Int!
+      gender: string; // String!
+      name: string; // String!
+    }
+  }
+  Query: {
+    usersNearAddress: { // args
+      address: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

@@ -2,16 +2,20 @@
 ### Do not make changes to this file directly
 
 
+type Mutation {
+  createUser(address: String!, age: Int!, gender: String!, name: String!): User!
+}
+
 type Query {
-  ok: Boolean!
+  usersNearAddress(address: String!): [User!]
 }
 
 type User {
-  address: String
-  age: Int
-  gender: String
-  id: Int
-  latitude: Float
-  longitude: Float
-  name: String
+  address: String!
+  age: Int!
+  gender: String!
+  id: Int!
+  latitude: Float!
+  longitude: Float!
+  name: String!
 }
